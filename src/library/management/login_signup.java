@@ -5,6 +5,8 @@
  */
 package library.management;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -20,6 +22,8 @@ public class login_signup extends javax.swing.JFrame {
      */
     public login_signup() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
     
     public static void start(){
@@ -180,7 +184,7 @@ public class login_signup extends javax.swing.JFrame {
                 Index text = new Index();
                 text.signup(id,pass);
                 login_success.start();
-                text.logHistory(id+"has signed up");
+                text.logHistory(id+" has signed up");
                 dispose();
             } catch (IOException ex) {
                 Logger.getLogger(login_signup.class.getName()).log(Level.SEVERE, null, ex);

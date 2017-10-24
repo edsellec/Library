@@ -5,6 +5,9 @@
  */
 package library.management;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author edseeraan
@@ -16,6 +19,8 @@ public class admin_menu extends javax.swing.JFrame {
      */
     public admin_menu() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
     
     public static void start(){
@@ -37,6 +42,9 @@ public class admin_menu extends javax.swing.JFrame {
         Admin_history = new javax.swing.JButton();
         Admin_add = new javax.swing.JButton();
         Admin_logout = new javax.swing.JButton();
+        Admin_del = new javax.swing.JButton();
+        Admin_listBooks = new javax.swing.JButton();
+        Admin_debug = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,16 +76,34 @@ public class admin_menu extends javax.swing.JFrame {
             }
         });
 
+        Admin_del.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
+        Admin_del.setText("Delete book");
+        Admin_del.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Admin_delActionPerformed(evt);
+            }
+        });
+
+        Admin_listBooks.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
+        Admin_listBooks.setText("List of books");
+        Admin_listBooks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Admin_listBooksActionPerformed(evt);
+            }
+        });
+
+        Admin_debug.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
+        Admin_debug.setText("Debug");
+        Admin_debug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Admin_debugActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Admin_history, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Admin_add, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,6 +112,15 @@ public class admin_menu extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(Admin_logout)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Admin_debug, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Admin_listBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Admin_history, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Admin_del, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Admin_add, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,8 +130,14 @@ public class admin_menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(Admin_add, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Admin_del, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Admin_listBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Admin_history, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Admin_debug, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Admin_logout)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -131,6 +172,21 @@ public class admin_menu extends javax.swing.JFrame {
         admin_searchHistory.start();
         dispose();
     }//GEN-LAST:event_Admin_historyActionPerformed
+
+    private void Admin_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Admin_delActionPerformed
+        admin_delBook.start();
+        dispose();
+    }//GEN-LAST:event_Admin_delActionPerformed
+
+    private void Admin_listBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Admin_listBooksActionPerformed
+        admin_listBook.start();
+        dispose();
+    }//GEN-LAST:event_Admin_listBooksActionPerformed
+
+    private void Admin_debugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Admin_debugActionPerformed
+        admin_debug.start();
+        dispose();
+    }//GEN-LAST:event_Admin_debugActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,7 +225,10 @@ public class admin_menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Admin_add;
+    private javax.swing.JButton Admin_debug;
+    private javax.swing.JButton Admin_del;
     private javax.swing.JButton Admin_history;
+    private javax.swing.JButton Admin_listBooks;
     private javax.swing.JButton Admin_logout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

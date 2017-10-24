@@ -5,6 +5,8 @@
  */
 package library.management;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -21,6 +23,8 @@ public class login extends javax.swing.JFrame {
      */
     public login() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
     
     public static void start(){
@@ -67,7 +71,7 @@ public class login extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
         jLabel3.setText("Password");
 
-        User_signup.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
+        User_signup.setFont(new java.awt.Font("Montserrat ExtraLight", 1, 12)); // NOI18N
         User_signup.setText("No Account? Sign Up Here!");
         User_signup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +98,7 @@ public class login extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(User_signup)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                                 .addComponent(User_signinadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -180,14 +184,6 @@ public class login extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-        }
-        else {
-            Index text = new Index();
-            try {
-                text.logHistory("Directory is existing");
-            } catch (IOException ex) {
-                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         

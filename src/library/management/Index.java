@@ -12,8 +12,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -212,10 +217,45 @@ public class Index {
         return filePass;
     }
     
+    public void deleteBook(String book, String author) throws IOException {
+        int location = 0;
+        String temp = "";
+        String bookToDelete = book+";"+author+";";
+        File file = new File("C:\\Library\\library.txt");
+        ArrayList<String> list;
+        try (Scanner s = new Scanner(file)) {
+            list = new ArrayList<String>();
+            while (s.hasNextLine()){
+                temp = s.nextLine();
+                if (!temp.equals(bookToDelete)){
+                    list.add(temp);
+                }
+            }
+        }
+        deleteFileNIO("C:\\Library\\library.txt");
+        
+        File log = new File("C:\\Library\\library.txt");
+        log.createNewFile();
+        while(location < list.size()) {
+            try(FileWriter fw = new FileWriter(log, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw)) {
+                out.print(list.get(location));
+                out.println();
+            }
+            location++;
+        }
+    }
+    
+    public static void deleteFileNIO(String filePath) throws IOException{
+	Path path = Paths.get(filePath);
+	Files.delete(path);
+    }
     
     class Student {
         private String pass;
         private String book;
+        private String author;
         
         public String getPass() {
             return pass;
@@ -228,6 +268,12 @@ public class Index {
         }
         public void setBook(String book) {
             this.book = book;
+        }
+        public String getAuthor() {
+            return author;
+        }
+        public void setAuthor(String author) {
+            this.author = author;
         }
     }
     

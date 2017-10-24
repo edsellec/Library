@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -20,18 +19,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author edseeraan
  */
-public class user_history extends javax.swing.JFrame {
+public class admin_debug extends javax.swing.JFrame {
     
-    static String idLog;
     
-    public user_history() {
+    public admin_debug() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
 
     public static void start(){
-            user_history window = new user_history();
+            admin_debug window = new admin_debug();
             window.setVisible(true);
     }
     /**
@@ -44,42 +42,35 @@ public class user_history extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        User_goBack = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        User_showId = new javax.swing.JLabel();
+        admin_goBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        User_tableBook = new javax.swing.JTable();
+        admin_debug = new javax.swing.JTable();
         User_load = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        User_goBack.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
-        User_goBack.setText("Menu");
-        User_goBack.addActionListener(new java.awt.event.ActionListener() {
+        admin_goBack.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
+        admin_goBack.setText("Menu");
+        admin_goBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                User_goBackActionPerformed(evt);
+                admin_goBackActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 11)); // NOI18N
-        jLabel2.setText("User ID:");
-
-        User_showId.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 11)); // NOI18N
-
-        User_tableBook.setAutoCreateRowSorter(true);
-        User_tableBook.setModel(new javax.swing.table.DefaultTableModel(
+        admin_debug.setAutoCreateRowSorter(true);
+        admin_debug.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Time & Date", "Book Title", "Status"
+                "Time & Date", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -90,19 +81,18 @@ public class user_history extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        User_tableBook.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        User_tableBook.setMaximumSize(new java.awt.Dimension(1090, 64));
-        User_tableBook.setRowSelectionAllowed(false);
-        User_tableBook.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(User_tableBook);
-        if (User_tableBook.getColumnModel().getColumnCount() > 0) {
-            User_tableBook.getColumnModel().getColumn(0).setResizable(false);
-            User_tableBook.getColumnModel().getColumn(1).setResizable(false);
-            User_tableBook.getColumnModel().getColumn(2).setResizable(false);
+        admin_debug.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        admin_debug.setMaximumSize(new java.awt.Dimension(1090, 64));
+        admin_debug.setRowSelectionAllowed(false);
+        admin_debug.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(admin_debug);
+        if (admin_debug.getColumnModel().getColumnCount() > 0) {
+            admin_debug.getColumnModel().getColumn(0).setResizable(false);
+            admin_debug.getColumnModel().getColumn(1).setResizable(false);
         }
 
         User_load.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
-        User_load.setText("Load History");
+        User_load.setText("Load Index");
         User_load.setSelected(true);
         User_load.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,15 +108,12 @@ public class user_history extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(User_showId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(User_goBack))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(admin_goBack))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(203, 203, 203)
+                .addGap(212, 212, 212)
                 .addComponent(User_load)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -138,11 +125,7 @@ public class user_history extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
-                        .addComponent(User_showId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(User_goBack, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addComponent(admin_goBack)
                 .addContainerGap())
         );
 
@@ -160,56 +143,46 @@ public class user_history extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void User_goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_User_goBackActionPerformed
-        user_menu.start();
-        user_menu.User_showId.setText(user_history.idLog);
-        user_menu.idLog = user_history.idLog;
+    private void admin_goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_goBackActionPerformed
+        admin_menu.start();
         dispose();
-    }//GEN-LAST:event_User_goBackActionPerformed
+    }//GEN-LAST:event_admin_goBackActionPerformed
 
     private void User_loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_User_loadActionPerformed
-        String user = idLog+"_history.txt";
-        String USER_FILE_NAME = "C:\\Library\\Users\\History\\"+user;
-        
-        File temp = new File(USER_FILE_NAME);
-        if (!temp.exists()){
+        String user = "C:\\Library\\index.txt";
+        File temp = new File(user);
+        if (temp.exists()){
             try {
-                temp.createNewFile();
+                readFile();
+                User_load.setEnabled(false);
             } catch (IOException ex) {
                 Logger.getLogger(user_history.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        try {
-            readFile();
-        } catch (IOException ex) {
-            Logger.getLogger(user_history.class.getName()).log(Level.SEVERE, null, ex);
+        else {
+            ErrorManager.catchError("Debug doesn't exist!");
         }
-        User_load.setEnabled(false);
     }//GEN-LAST:event_User_loadActionPerformed
 
     public void readFile() throws IOException {
-        File file = new File("C:\\Library\\Users\\History\\"+idLog+"_history.txt");
-        ArrayList<String> list = new ArrayList<>();
+        File file = new File("C:\\Library\\index.txt");
         String readLine = null;
         FileReader reader = new FileReader(file);
         BufferedReader buffReader = new BufferedReader(reader);
         while((readLine = buffReader.readLine()) != null) {
             String[] splitData = readLine.split(";");
-            user_history.Book book = new user_history.Book();
+            admin_debug.Book book = new admin_debug.Book();
             book.setTime(splitData[0]);
-            book.setBook(splitData[2]);
-            book.setStatus(splitData[3]);
-            DefaultTableModel model = (DefaultTableModel) User_tableBook.getModel();
-            model.addRow(new String[]{book.getTime(), book.getBook(), book.getStatus()});
-            list.add(getName());
+            book.setStatus(splitData[1]);
+            DefaultTableModel model = (DefaultTableModel) admin_debug.getModel();
+            model.addRow(new String[]{book.getTime(), book.getStatus()});
         }
     }
+    
     
     class Book {
 
         private String time;
-        private String book;
         private String status;
 
         public String getTime() {
@@ -217,12 +190,6 @@ public class user_history extends javax.swing.JFrame {
         }
         public void setTime(String time) {
             this.time = time;
-        }
-        public String getBook() {
-            return book;
-        }
-        public void setBook(String book) {
-            this.book = book;
         }
         public String getStatus() {
             return status;
@@ -244,11 +211,9 @@ public class user_history extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton User_goBack;
     private javax.swing.JButton User_load;
-    public static javax.swing.JLabel User_showId;
-    private javax.swing.JTable User_tableBook;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTable admin_debug;
+    private javax.swing.JButton admin_goBack;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

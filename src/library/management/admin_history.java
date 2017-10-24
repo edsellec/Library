@@ -5,6 +5,8 @@
  */
 package library.management;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -24,6 +26,8 @@ public class admin_history extends javax.swing.JFrame {
     
     public admin_history() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
 
     public static void start(){
@@ -162,18 +166,6 @@ public class admin_history extends javax.swing.JFrame {
     }//GEN-LAST:event_admin_goBackActionPerformed
 
     private void User_loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_User_loadActionPerformed
-        String user = idLog+"_history.txt";
-        String USER_FILE_NAME = "C:\\Library\\Users\\History\\"+user;
-        
-        File temp = new File(USER_FILE_NAME);
-        if (!temp.exists()){
-            try {
-                temp.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(user_history.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
         try {
             readFile();
         } catch (IOException ex) {
@@ -183,7 +175,6 @@ public class admin_history extends javax.swing.JFrame {
     }//GEN-LAST:event_User_loadActionPerformed
 
     public void readFile() throws IOException {
-        
         File file = new File("C:\\Library\\Users\\History\\"+idLog+"_history.txt");
         ArrayList<String> list = new ArrayList<>();
         String readLine = null;
@@ -200,6 +191,7 @@ public class admin_history extends javax.swing.JFrame {
             list.add(getName());
         }
     }
+    
     
     class Book {
 
