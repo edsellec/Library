@@ -1,5 +1,5 @@
 /*
- * adds book to library.txt
+ * add/s book/s to library.txt
  */
 package library.management;
 
