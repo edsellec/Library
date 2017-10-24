@@ -186,6 +186,7 @@ public class admin_addBook extends javax.swing.JFrame {
             try {
                 Index text = new Index();
                 text.storebook(book, author);
+                text.logHistory("Admin added "+book+" by "+author);
                 ErrorManager.catchSuccess("Book Title and Author are added to the library!");
             } catch (IOException ex) {
                 Logger.getLogger(admin_addBook.class.getName()).log(Level.SEVERE, null, ex);

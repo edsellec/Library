@@ -5,6 +5,9 @@
  */
 package library.management;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author edseeraan
@@ -16,6 +19,8 @@ public class login_success extends javax.swing.JFrame {
      */
     public login_success() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
     
     public static void start(){

@@ -166,10 +166,16 @@ public class login_signup extends javax.swing.JFrame {
             try {
                 boolean success = (new File(Library)).mkdirs();
                 if (success) {
-                    System.out.println("Directories: " + Library + " created");
+                    Index text = new Index();
+                    text.logHistory("Directories: " + Library + " created");
                 } 
             } catch (Exception e) {//Catch exception if any
-                System.err.println("Error: " + e.getMessage());
+                Index text = new Index();
+                try {
+                    text.logHistory("Error: " + e.getMessage());
+                } catch (IOException ex) {
+                    Logger.getLogger(login_signup.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         

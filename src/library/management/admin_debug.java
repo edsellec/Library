@@ -154,6 +154,7 @@ public class admin_debug extends javax.swing.JFrame {
         if (temp.exists()){
             try {
                 readFile();
+                Index text = new Index();
                 User_load.setEnabled(false);
             } catch (IOException ex) {
                 Logger.getLogger(user_history.class.getName()).log(Level.SEVERE, null, ex);

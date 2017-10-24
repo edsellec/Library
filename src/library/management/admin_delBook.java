@@ -7,13 +7,10 @@ package library.management;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -165,7 +162,9 @@ public class admin_delBook extends javax.swing.JFrame {
                 try {
                     Index text = new Index();
                     text.deleteBook(book, author);
-                    ErrorManager.catchSuccess("Book Title and Author are deleted from the library!");
+                    text.logHistory("Admin deleted "+book+" by "+author);
+                    admin_menu.start();
+                    dispose();
                 } catch (IOException ex) {
                     Logger.getLogger(admin_delBook.class.getName()).log(Level.SEVERE, null, ex);
                 }
