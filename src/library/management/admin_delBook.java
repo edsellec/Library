@@ -5,10 +5,13 @@ package library.management;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,6 +31,7 @@ public class admin_delBook extends javax.swing.JFrame {
     public static void start(){
             admin_delBook window = new admin_delBook();
             window.setVisible(true);
+            window.admin_submit.setEnabled(false);
     }
     
     final String LIB_FILE_NAME = "C:\\Library\\library.txt";
@@ -49,6 +53,10 @@ public class admin_delBook extends javax.swing.JFrame {
         admin_bookAuthor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        User_tableBook = new javax.swing.JTable();
+        admin_load = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,46 +83,106 @@ public class admin_delBook extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
-        jLabel4.setText("*To delete a book, you must input the right book title and its author.");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("To delete a book, you must input the right book title and its author.");
 
         jLabel5.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
-        jLabel5.setText("*It is to confirm that the admin really want to delete the said book.");
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("It is to confirm that the admin really want to delete the said book.");
+
+        jLabel6.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("With right punctuations or right uppercased or lowercased letters.");
+
+        User_tableBook.setAutoCreateRowSorter(true);
+        User_tableBook.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Book Title", "Book Author"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        User_tableBook.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        User_tableBook.setMaximumSize(new java.awt.Dimension(1090, 64));
+        User_tableBook.setRowSelectionAllowed(false);
+        User_tableBook.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(User_tableBook);
+
+        admin_load.setFont(new java.awt.Font("Montserrat ExtraLight", 0, 12)); // NOI18N
+        admin_load.setText("Load Library");
+        admin_load.setSelected(true);
+        admin_load.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admin_loadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(50, 50, 50))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(admin_submit)
-                        .addGap(117, 117, 117)
+                        .addGap(138, 138, 138)
                         .addComponent(admin_goBack))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(admin_bookTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(admin_bookAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel5))
-                    .addComponent(jLabel4))
-                .addGap(50, 50, 50))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(73, 73, 73)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(admin_bookTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(admin_bookAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(216, 216, 216)
+                                .addComponent(admin_load)))
+                        .addGap(0, 59, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(10, 10, 10)
+                .addComponent(admin_load)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(admin_bookTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -125,16 +193,18 @@ public class admin_delBook extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(admin_submit)
+                        .addContainerGap(17, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(admin_goBack)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(admin_submit)
-                        .addContainerGap(33, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,8 +231,9 @@ public class admin_delBook extends javax.swing.JFrame {
                     Index text = new Index();
                     text.deleteBook(book, author);
                     text.logHistory("Admin deleted "+book+" by "+author);
-                    admin_menu.start();
-                    dispose();
+                    admin_bookTitle.setText("");
+                    admin_bookAuthor.setText("");
+                    load();
                 } catch (IOException ex) {
                     Logger.getLogger(admin_delBook.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -178,6 +249,65 @@ public class admin_delBook extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_admin_goBackActionPerformed
 
+    private void admin_loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_loadActionPerformed
+        try {
+            readFile();
+        } catch (IOException ex) {
+            Logger.getLogger(admin_history.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        admin_load.setEnabled(false);
+        admin_submit.setEnabled(true);
+    }//GEN-LAST:event_admin_loadActionPerformed
+    
+    private void load() {
+        DefaultTableModel model = (DefaultTableModel) User_tableBook.getModel();
+        model.setRowCount(0);
+        File temp = new File("C:\\Library\\library.txt");
+        if (!temp.exists()){
+            ErrorManager.catchError("Library doesn't have stored books!");
+        }
+        else {
+            try {
+                readFile();
+            } catch (IOException ex) {
+                Logger.getLogger(user_borrow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void readFile() throws IOException {
+        File file = new File("C:\\Library\\library.txt");
+        String readLine = null;
+        try (FileReader reader = new FileReader(file);BufferedReader buffReader = new BufferedReader(reader)) {
+            while((readLine = buffReader.readLine()) != null) {
+                String[] splitData = readLine.split(";");
+                admin_delBook.Book book = new admin_delBook.Book();
+                book.setName(splitData[0]);
+                book.setAuthor(splitData[1]);
+                DefaultTableModel model = (DefaultTableModel) User_tableBook.getModel();
+                model.addRow(new String[]{book.getName(), book.getAuthor()});
+            }
+        }
+    }
+    
+    class Book {
+
+        private String name;
+        private String author;
+
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        public String getAuthor() {
+            return author;
+        }
+        public void setAuthor(String author) {
+            this.author = author;
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -217,14 +347,19 @@ public class admin_delBook extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton User_load;
+    private javax.swing.JTable User_tableBook;
     private javax.swing.JTextField admin_bookAuthor;
     private javax.swing.JTextField admin_bookTitle;
     private javax.swing.JButton admin_goBack;
+    private javax.swing.JButton admin_load;
     private javax.swing.JButton admin_submit;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

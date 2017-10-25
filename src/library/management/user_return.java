@@ -165,11 +165,16 @@ public class user_return extends javax.swing.JFrame {
                 String book = user_listBook.getSelectedItem().toString();
                 index.history_return(book, idLog);
                 Index text = new Index();
+                user_menu.start();
+                user_menu.User_showId.setText(user_borrow.idLog);
+                user_menu.idLog = user_borrow.idLog;
                 try {
                     text.logHistory(idLog+" returned "+book);
+                    dispose();
                 } catch (IOException ex) {
                     Logger.getLogger(login_admin.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                dispose();
             } catch (IOException ex) {
                 Logger.getLogger(user_return.class.getName()).log(Level.SEVERE, null, ex);
             }

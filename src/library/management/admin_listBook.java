@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -164,15 +165,15 @@ public class admin_listBook extends javax.swing.JFrame {
     public void readFile() throws IOException {
         File file = new File("C:\\Library\\library.txt");
         String readLine = null;
-        FileReader reader = new FileReader(file);
-        BufferedReader buffReader = new BufferedReader(reader);
-        while((readLine = buffReader.readLine()) != null) {
-            String[] splitData = readLine.split(";");
-            admin_listBook.Book book = new admin_listBook.Book();
-            book.setBook(splitData[0]);
-            book.setAuthor(splitData[1]);
-            DefaultTableModel model = (DefaultTableModel) admin_tableBook.getModel();
-            model.addRow(new String[]{book.getBook(), book.getAuthor()});
+        try (FileReader reader = new FileReader(file);BufferedReader buffReader = new BufferedReader(reader)) {
+            while((readLine = buffReader.readLine()) != null) {
+                String[] splitData = readLine.split(";");
+                admin_listBook.Book book = new admin_listBook.Book();
+                book.setBook(splitData[0]);
+                book.setAuthor(splitData[1]);
+                DefaultTableModel model = (DefaultTableModel) admin_tableBook.getModel();
+                model.addRow(new String[]{book.getBook(), book.getAuthor()});
+            }
         }
     }
     

@@ -159,12 +159,6 @@ public class Index {
                 System.err.println("Error: " + e.getMessage());
             }
         }
-        Index text = new Index();
-        try {
-            text.logHistory("Administrator added "+book+" to library");
-        } catch (IOException ex) {
-            Logger.getLogger(login_admin.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     public void logHistory(String condition) throws IOException {

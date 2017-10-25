@@ -1,5 +1,5 @@
 /*
- * add/s book/s to library.txt
+ * adds book to library.txt
  */
 package library.management;
 
@@ -185,7 +185,8 @@ public class admin_addBook extends javax.swing.JFrame {
                 Index text = new Index();
                 text.storebook(book, author);
                 text.logHistory("Admin added "+book+" by "+author);
-                ErrorManager.catchSuccess("Book Title and Author are added to the library!");
+                admin_bookTitle.setText("");
+                admin_bookAuthor.setText("");
             } catch (IOException ex) {
                 Logger.getLogger(admin_addBook.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -220,15 +221,15 @@ public class admin_addBook extends javax.swing.JFrame {
     public void readFile() throws IOException {
         File file = new File("C:\\Library\\library.txt");
         String readLine = null;
-        FileReader reader = new FileReader(file);
-        BufferedReader buffReader = new BufferedReader(reader);
-        while((readLine = buffReader.readLine()) != null) {
-            String[] splitData = readLine.split(";");
-            admin_addBook.Book book = new admin_addBook.Book();
-            book.setName(splitData[0]);
-            book.setAuthor(splitData[1]);
-            DefaultTableModel model = (DefaultTableModel) User_tableBook.getModel();
-            model.addRow(new String[]{book.getName(), book.getAuthor()});
+        try (FileReader reader = new FileReader(file);BufferedReader buffReader = new BufferedReader(reader)) {
+            while((readLine = buffReader.readLine()) != null) {
+                String[] splitData = readLine.split(";");
+                admin_addBook.Book book = new admin_addBook.Book();
+                book.setName(splitData[0]);
+                book.setAuthor(splitData[1]);
+                DefaultTableModel model = (DefaultTableModel) User_tableBook.getModel();
+                model.addRow(new String[]{book.getName(), book.getAuthor()});
+            }
         }
     }
     
